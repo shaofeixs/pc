@@ -4,6 +4,15 @@ public class News {
     private String title;
     private String share_url;
     private String attr;
+    private String imgUrl;
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 
     public String getTitle() {
         return title;

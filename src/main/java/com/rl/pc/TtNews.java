@@ -17,7 +17,8 @@ import java.util.regex.Pattern;
 
 public class TtNews {
     //相关新闻条数
-    public static int num=3;
+    public static int num = 3;
+
     public static List<News> getNewsInfoByKey(String keyword) {
         JSONObject json = new JSONObject();
         List<News> list = new ArrayList<News>();
@@ -42,9 +43,11 @@ public class TtNews {
                         break;
                     } else {
                         //     getNewsDetals(share_url);
-                     //   System.out.println(title + "   " + share_url);
-                    //    System.out.println(attr);
+                        //   System.out.println(title + "   " + share_url);
+                        //    System.out.println(attr);
                         News news = new News(title, share_url, attr);
+                        String imgUrl = getNewsDetals(news.getShare_url());
+                        news.setImgUrl(imgUrl);
                         list.add(news);
                     }
                     n++;
@@ -60,6 +63,8 @@ public class TtNews {
 
 
     public static String getNewsDetals(String url) {
+        //  System.out.println(url);
+        String imgUrl = null;
         try {
             Document doc = Jsoup.connect(url).get();
 
@@ -75,10 +80,12 @@ public class TtNews {
                     Matcher m = r.matcher(str);
                     if (m.find()) {
                         String option_1 = m.group(1);
-                        System.out.println("{" + option_1 + "}");
+                        //     System.out.println("{" + option_1 + "}");
                         JSONObject json = JSONObject.parseObject("{" + option_1 + "}}", JSONObject.class);
-                        System.out.println(json);
-                        System.out.println(json.getString("articleInfo"));
+                        imgUrl = json.getJSONObject("articleInfo").getString("coverImg");
+                        //     System.out.println(imgUrl);
+                        //    System.out.println(json);
+                        //    System.out.println(json.getString("articleInfo"));
                     }
                 }
 
@@ -87,7 +94,7 @@ public class TtNews {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+        return imgUrl;
     }
 
     ;
