@@ -32,6 +32,7 @@ public class Test {
             System.out.println("&nbsp;&nbsp;相关阅读："+"</br>");
             for (News tem : news) {
                 System.out.println("&nbsp;&nbsp;&nbsp;&nbsp;" + tem.getTitle()+"</br>");
+                System.out.println("&nbsp;&nbsp;&nbsp;&nbsp;" + tem.getShare_url().replace("group/","a").replace("http","https")+"</br>");
             }
         }
     }

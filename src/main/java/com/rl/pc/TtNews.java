@@ -36,7 +36,7 @@ public class TtNews {
                 String title = tem.getString("title");
                 String share_url = tem.getString("share_url");
                 String attr = tem.getString("abstract");
-                if (StringUtils.isNotBlank(title) && StringUtils.isNotBlank(share_url) && StringUtils.isNotBlank(attr)) {
+                if (StringUtils.isNotBlank(title) && StringUtils.isNotBlank(share_url) &&share_url.contains("toutiao.com")&& StringUtils.isNotBlank(attr)) {
 
                     if (n >= num) {
 
